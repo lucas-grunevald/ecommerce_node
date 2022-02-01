@@ -20,7 +20,9 @@ export default class UpdateProductService {
             throw new AppError("Quantidade em estoque não pode ser menor que zero!")
         }
 
-        await new FindCategoryByIdService().execute(data.category_id)
+        if (data.categoria_id) {
+            await new FindCategoryByIdService().execute(data.categoria_id)
+        }
 
         const repository = new ProductRepository()
 

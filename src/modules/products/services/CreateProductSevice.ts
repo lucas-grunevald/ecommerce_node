@@ -16,7 +16,7 @@ export default class CreateProductService {
       throw new AppError("Quantidade em estoque não pode ser menor que zero!")
     }
 
-    await new FindCategoryByIdService().execute(data.category_id)
+    await new FindCategoryByIdService().execute(data.categoria_id)
 
     const product = await productRepository.create(data);
 
