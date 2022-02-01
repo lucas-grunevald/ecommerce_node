@@ -1,3 +1,4 @@
+import EmailValidation from "shared/infra/validations/EmailValidation";
 import AppError from "../../../shared/errors/AppErrors";
 import IClientDTO from "../dtos/IClientDTO";
 import Client from "../infra/typeorm/entities/Client";
@@ -20,6 +21,10 @@ export default class CreateClientService {
 
     if (data.id) {
       throw new AppError("ID não deve ser enviado no cadastro");
+    }
+
+    if (!new EmailValidation().validate(data.email || "")) {
+      throw new AppError("Email inválido!")
     }
 
     const client = await clientRepository.create(data);
