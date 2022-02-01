@@ -12,7 +12,7 @@ export default class CreateProductService {
       throw new AppError("Preço deve ser maior que zero!")
     }
 
-    if (data.qunatidade < 0) {
+    if (data.quantidade < 0) {
       throw new AppError("Quantidade em estoque não pode ser menor que zero!")
     }
 
