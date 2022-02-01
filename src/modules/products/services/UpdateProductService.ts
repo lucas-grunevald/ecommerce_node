@@ -12,6 +12,14 @@ export default class UpdateProductService {
             throw new AppError("Parâmetro ID não encontrado!")
         }
 
+        if (data.preco <= 0) {
+            throw new AppError("Preço deve ser maior que zero!")
+        }
+
+        if (data.qunatidade < 0) {
+            throw new AppError("Quantidade em estoque não pode ser menor que zero!")
+        }
+
         await new FindCategoryByIdService().execute(data.category_id)
 
         const repository = new ProductRepository()
