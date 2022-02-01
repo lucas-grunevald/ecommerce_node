@@ -37,4 +37,8 @@ export default class ProductRepository implements IProductRepository {
   async findAll(): Promise<Product[]> {
     return this.ormRepository.find()
   }
+
+  async delete(id: number): Promise<boolean> {
+    return (await this.ormRepository.delete(id)).affected ? true : false
+  }
 }

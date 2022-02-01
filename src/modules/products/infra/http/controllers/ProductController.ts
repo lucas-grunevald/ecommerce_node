@@ -3,6 +3,7 @@ import FindProductByIdService from "../../../services/FindProductByIdSevice";
 import CreateProductService from "../../../services/CreateProductSevice";
 import UpdateProductService from "../../../../../modules/products/services/UpdateProductService";
 import FindAllProductsService from "../../../../../modules/products/services/FindAllProductsService";
+import DeleteProductService from "../../../../../modules/products/services/DeleteProductService";
 
 class ProductController {
   async create(request: Request, response: Response): Promise<Response> {
@@ -40,6 +41,16 @@ class ProductController {
     const products = await service.execute()
 
     return response.json(products)
+  }
+
+  async delete(request: Request, response: Response) {
+    const { id } = request.params
+
+    const service = new DeleteProductService()
+
+    await service.execute(Number(id))
+
+    return response.json()
   }
 }
 
