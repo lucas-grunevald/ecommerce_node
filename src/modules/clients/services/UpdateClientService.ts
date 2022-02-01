@@ -1,4 +1,4 @@
-import EmailValidation from "shared/infra/validations/EmailValidation";
+import EmailValidation from "../../../shared/infra/validations/EmailValidation";
 import AppError from "../../../shared/errors/AppErrors";
 import IClientDTO from "../dtos/IClientDTO";
 import Client from "../infra/typeorm/entities/Client";
