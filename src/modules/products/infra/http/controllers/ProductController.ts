@@ -29,7 +29,7 @@ class ProductController {
     const { id } = request.params
     const data = request.body
 
-    const product = new UpdateProductService().execute({ id: Number(id), ...data })
+    const product = await new UpdateProductService().execute({ id: Number(id), ...data })
 
     return response.json(product)
   }
