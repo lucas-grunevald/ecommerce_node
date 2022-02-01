@@ -1,3 +1,4 @@
+import FindCategoryByIdService from "../../../modules/categories/services/FindCategoryByIdService";
 import AppError from "../../../shared/errors/AppErrors";
 import IProductDTO from "../dtos/IProductDTO";
 import Product from "../infra/typeorm/entities/Product";
@@ -10,6 +11,8 @@ export default class UpdateProductService {
         if (!id) {
             throw new AppError("Parâmetro ID não encontrado!")
         }
+
+        await new FindCategoryByIdService().execute(data.category_id)
 
         const repository = new ProductRepository()
 
