@@ -29,4 +29,8 @@ export default class ProductRepository implements IProductRepository {
 
     return this.ormRepository.save(product);
   }
+
+  async update(data: IProductDTO): Promise<Product> {
+    return this.ormRepository.save(data)
+  }
 }
