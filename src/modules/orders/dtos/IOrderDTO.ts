@@ -5,8 +5,5 @@ export default interface IOrderDTO {
   client_id: string;
   status: string;
   forma_pagamento: string;
-  valor: number;
-  desconto?: number;
-  data: Date;
   pedido_produtos: IOrderProductDTO[];
 }
