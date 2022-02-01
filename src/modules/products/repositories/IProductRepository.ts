@@ -5,4 +5,5 @@ export default interface IProductRepository {
   create(data: IProductDTO): Promise<Product>;
   findById(id: number): Promise<Product | undefined>;
   update(data: IProductDTO): Promise<Product>;
+  findAll(): Promise<Product[]>;
 }

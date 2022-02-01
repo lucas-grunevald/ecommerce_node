@@ -33,4 +33,8 @@ export default class ProductRepository implements IProductRepository {
   async update(data: IProductDTO): Promise<Product> {
     return this.ormRepository.save(data)
   }
+
+  async findAll(): Promise<Product[]> {
+    return this.ormRepository.find()
+  }
 }
