@@ -21,7 +21,17 @@ export default class OrderRepository implements IOrderRepository {
 
   async create(data: IOrderDTO): Promise<Order> {
     const order = this.ormRepository.create(data);
-
+    console.log(order)
     return this.ormRepository.save(order);
   }
+
+  find(cliente_id:number): Promise<Order[]>{
+    return this.ormRepository
+    .createQueryBuilder("order")
+    .leftJoinAndSelect("order.pedido_produtos", "pp")
+    .leftJoinAndSelect("pp.produto", "p")
+    .where("order.cliente_id = (:cliente_id)", { cliente_id })
+    .getMany()
+  }
+  
 }

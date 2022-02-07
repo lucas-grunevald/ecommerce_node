@@ -1,6 +1,6 @@
 import IProductDTO from "../../../dtos/IProductDTO";
 import IProductRepository from "../../../repositories/IProductRepository";
-import { getRepository, Repository } from "typeorm";
+import { getRepository, In, Repository } from "typeorm";
 import Product from "../entities/Product";
 
 export default class ProductRepository implements IProductRepository {
@@ -40,5 +40,16 @@ export default class ProductRepository implements IProductRepository {
 
   async delete(id: number): Promise<boolean> {
     return (await this.ormRepository.delete(id)).affected ? true : false
+  }
+
+  findByIds(ids:number[]): Promise<Product[]>{
+    return this.ormRepository
+      .find({
+        where: {id: In(ids)}
+      })
+  }
+
+  updateMany(data: IProductDTO[]): Promise<Product[]>{
+    return this.ormRepository.save(data)
   }
 }

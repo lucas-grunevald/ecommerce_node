@@ -5,5 +5,7 @@ const routes = Router();
 
 routes.post("/", OrderController.create);
 routes.get("/:id", OrderController.findById);
+routes.get("/", OrderController.find);
+
 
 export default routes;

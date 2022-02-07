@@ -7,4 +7,6 @@ export default interface IProductRepository {
   update(data: IProductDTO): Promise<Product>;
   findAll(): Promise<Product[]>;
   delete(id: number): Promise<boolean>;
+  findByIds(ids:number[]):Promise<Product[]>;
+  updateMany(data: IProductDTO[]):Promise<Product[]>;
 }
