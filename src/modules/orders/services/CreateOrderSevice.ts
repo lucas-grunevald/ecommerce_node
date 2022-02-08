@@ -9,9 +9,20 @@ export default class CreateOrderService {
     const orderRepository = new OrderRepository();
     const productRepository = new ProductRepository()
 
+    
     if(!data.cliente_id){
       throw new AppError("Cliente não informado!")
     }
+
+    if(data.pedido_produtos.length < 1){
+      throw new AppError("Pedido deve ter pelo menos um produto!")
+    }
+
+    data.pedido_produtos.forEach(el => {
+      if(!el.quantidade){
+        throw new AppError("A quantidade do produto deve ser informada!")
+      }
+    })
 
     let valor = 0
 

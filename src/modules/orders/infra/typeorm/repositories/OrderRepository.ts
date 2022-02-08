@@ -25,7 +25,7 @@ export default class OrderRepository implements IOrderRepository {
     return this.ormRepository.save(order);
   }
 
-  find(cliente_id:number): Promise<Order[]>{
+  findByClientId(cliente_id:number): Promise<Order[]>{
     return this.ormRepository
     .createQueryBuilder("order")
     .leftJoinAndSelect("order.pedido_produtos", "pp")

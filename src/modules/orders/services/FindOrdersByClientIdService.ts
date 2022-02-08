@@ -5,7 +5,7 @@ export default class FindOrdersByClientIdService {
     async execute(cliente_id:number): Promise<Order[]>{
         const repository = new OrderRepository()        
 
-        const orders = await repository.find(cliente_id)
+        const orders = await repository.findByClientId(cliente_id)
 
         return orders
     }
