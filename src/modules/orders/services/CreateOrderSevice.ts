@@ -1,7 +1,9 @@
 import ProductRepository from "../../../modules/products/infra/typeorm/repositories/ProductRepository";
 import AppError from "../../../shared/errors/AppErrors";
 import IOrderDTO from "../dtos/IOrderDTO";
+import IOrderProductDTO from "../dtos/IOrderProductDTO";
 import Order from "../infra/typeorm/entities/Order";
+import OrderProduct from "../infra/typeorm/entities/OrderProduct";
 import OrderRepository from "../infra/typeorm/repositories/OrderRepository";
 
 export default class CreateOrderService {
@@ -18,11 +20,13 @@ export default class CreateOrderService {
       throw new AppError("Pedido deve ter pelo menos um produto!")
     }
 
-    data.pedido_produtos.forEach(el => {
+    let duplicates:any = {}
+
+    data.pedido_produtos.forEach(el => {      
       if(!el.quantidade){
         throw new AppError("A quantidade do produto deve ser informada!")
-      }
-    })
+      }      
+    })    
 
     let valor = 0
 

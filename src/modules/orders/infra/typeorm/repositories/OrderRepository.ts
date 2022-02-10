@@ -33,5 +33,9 @@ export default class OrderRepository implements IOrderRepository {
     .where("order.cliente_id = (:cliente_id)", { cliente_id })
     .getMany()
   }
+
+  update(data:IOrderDTO): Promise<Order>{
+    return this.ormRepository.save(data);
+  }
   
 }

@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import FindOrderByIdService from "../../../services/FindOrderByIdSevice";
 import CreateOrderService from "../../../services/CreateOrderSevice";
 import FindOrdersByClientIdService from "../../../../../modules/orders/services/FindOrdersByClientIdService";
+import UpdateOrderService from "../../../../../modules/orders/services/UpdateOrderService";
 
 class OrderController {
   async create(request: Request, response: Response): Promise<Response> {
@@ -41,6 +42,16 @@ class OrderController {
     const product = await findOrderService.execute(Number(id));
 
     return response.json(product);
+  }
+  async update(request:Request, response: Response){
+    const { id } = request.params
+    const data = request.body
+
+    const service = new UpdateOrderService()
+
+    const order = await service.execute({...data, id: Number(id)})
+
+    return response.json(order)
   }
 }
 
