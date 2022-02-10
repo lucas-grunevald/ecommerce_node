@@ -23,7 +23,7 @@ export default class CreateOrderService {
     data.pedido_produtos.forEach(el => {      
       if(!el.quantidade){
         throw new AppError("A quantidade do produto deve ser informada!")
-      }      
+      } 
     })    
 
     let valor = 0
@@ -37,6 +37,9 @@ export default class CreateOrderService {
     produtos.forEach(el => {
       let pedido_produto = data.pedido_produtos.find(p => p.produto_id == el.id)
 
+      if(pedido_produto!.quantidade < 1){
+        throw new AppError(`A quantidade do produto ${el.nome} deve ser maior que 0!`)
+      }
       if(!pedido_produto){
         throw new AppError(`Produto: ${el.nome} não encontrado!`)
       }
