@@ -20,8 +20,6 @@ export default class CreateOrderService {
       throw new AppError("Pedido deve ter pelo menos um produto!")
     }
 
-    let duplicates:any = {}
-
     data.pedido_produtos.forEach(el => {      
       if(!el.quantidade){
         throw new AppError("A quantidade do produto deve ser informada!")
