@@ -29,14 +29,14 @@ export default class CreateOrderService {
     const produtos = await productRepository.findByIds(data.pedido_produtos.map(el => el.produto_id))
 
     if(produtos.length != data.pedido_produtos.length){
-      throw new AppError("Produto não encontrado!")
+      throw new AppError("Inconsistência na lista de produtos!")
     }
 
     produtos.forEach(el => {
       let pedido_produto = data.pedido_produtos.find(p => p.produto_id == el.id)
 
       if(!pedido_produto){
-        throw new AppError("Producot não encontrado!")
+        throw new AppError(`Produto: ${el.nome} não encontrado!`)
       }
 
       if(el.quantidade < pedido_produto.quantidade){
